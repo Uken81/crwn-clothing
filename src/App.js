@@ -25,10 +25,6 @@ function App() {
     })
   });
 
-  const test = () => {
-    console.log(currentUser);
-  }
-
   return (
     <div>
       <Header currentUser={currentUser} />
@@ -37,7 +33,6 @@ function App() {
         <Route path='/shop' component={ShopPage} />
         <Route path='/signin' component={signInAndSignUp} />
       </Switch>
-      <button onClick={test}>test</button>
     </div>
   );
 }
