@@ -13,27 +13,27 @@ import signInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up';
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
-
-
   useEffect(() => {
     let unsubscribeFromAuth = null;
     unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
+        console.log('1')
         const userRef = await createUserProfileDocument(userAuth)
         onSnapshot(userRef, (docSnap) => {
           setCurrentUser({
             id: docSnap.id,
             ...docSnap.data()
-          });
-          return () => {
-            unsubscribeFromAuth();
-          }
+          }); 
         })
       } else {
+        console.log('2')
         setCurrentUser({userAuth});
       }
+      return () => {
+        unsubscribeFromAuth();
+      }
     })
-  });
+  },[]);
   
 
   const test = () => {
